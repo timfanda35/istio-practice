@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: color-backend
+  labels:
+    workload: color
+spec:
+  hosts:
+  - "color-backend"
+  http:
+  - route:
+    - destination:
+        host: color-backend
+        subset: v1
+        port:
+          number: 80
+    fault:
+      abort:
+        percentage:
+          value: 100
+        httpStatus: 500

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: color-frontend-v4
+  labels:
+    app: color-frontend
+    workload: color
+    version: v4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: color-frontend
+      version: v4
+  template:
+    metadata:
+      labels:
+        app: color-frontend
+        workload: color
+        version: v4
+    spec:
+      containers:
+      - image: gcr.io/<REPLACE_WITH_YOUR_PROJECT_ID>/color-frontend:v4
+        name: goapp
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  color-backend:
+    build: color-backend
+    environment:
+      PORT: "80"
+    expose:
+    - "80"
+  color-frontend:
+    build: color-frontend
+    ports:
+    - "8080:8080"
+    links:
+    - color-backend

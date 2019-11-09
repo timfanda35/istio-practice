@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: color-frontend
+  labels:
+    workload: color
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - color-gateway
+  http:
+  - route:
+    - destination:
+        host: color-frontend
+        subset: v1
+        port:
+          number: 80
+  - route:
+    - destination:
+        host: color-frontend
+        subset: v2
+        port:
+          number: 80

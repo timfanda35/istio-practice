@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: color-frontend
+  labels:
+    workload: color
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - color-gateway
+  http:
+  - route:
+    - destination:
+        host: color-frontend
+        subset: v4
+        port:
+          number: 80
+    retries:
+      attempts: 3
+      perTryTimeout: 2s
+      # "connect-failure,refused-stream,unavailable,cancelled,resource-exhausted,retriable-status-codes"
+      retryOn: 5xx
