@@ -1,10 +1,10 @@
 package main
 
 import (
-	  "fmt"
-		"log"
-		"net/http"
-		"os"
+	"fmt"
+	"log"
+	"net/http"
+	"os"
 )
 
 const colorEndpoint = "http://color-backend/color"
@@ -21,6 +21,7 @@ const indexTemple = `
 	</body>
 </html>
 `
+
 // DynamicContent is for page render
 type DynamicContent struct {
 	Title string
@@ -29,17 +30,17 @@ type DynamicContent struct {
 
 func index(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusInternalServerError)
-  w.Write([]byte("500 - Something bad happened!"))
+	w.Write([]byte("500 - Something bad happened!"))
 }
 
 func main() {
-    http.HandleFunc("/", index)
-    port := os.Getenv("PORT")
-		if port == "" {
-						port = "8080"
-						log.Printf("Defaulting to port %s", port)
-		}
+	http.HandleFunc("/", index)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+		log.Printf("Defaulting to port %s", port)
+	}
 
-		log.Printf("Listening on port %s", port)
-		log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
+	log.Printf("Listening on port %s", port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }

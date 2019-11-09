@@ -112,22 +112,13 @@ Modify `color-frontend-with-error/src/main.go`, We had prepared the modified fil
 
 ```
 import (
-	  "fmt"
-		"io/ioutil"
-		"html/template"
-		"log"
-		"net/http"
-		"os"
-		"time"
-)
-
-...
-
-import (
-	  "fmt"
-		"log"
-		"net/http"
-		"os"
+	"fmt"
+	"io/ioutil"
+	"html/template"
+	"log"
+	"net/http"
+	"os"
+	"time"
 )
 
 ...
@@ -143,17 +134,17 @@ to
 ...
 
 import (
-	  "fmt"
-		"log"
-		"net/http"
-		"os"
+	"fmt"
+	"log"
+	"net/http"
+	"os"
 )
 
 ...
 
 func index(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusInternalServerError)
-  w.Write([]byte("500 - Something bad happened!"))
+	w.Write([]byte("500 - Something bad happened!"))
 }
 ```
 
